@@ -5,8 +5,8 @@ MAINTAINER Peter Wiggers <peter@bitlayer.nl>
 RUN apt-get update && apt-get install -y python-pip
 
 # install sops
-curl -LO https://github.com/mozilla/sops/releases/download/3.0.3/sops_3.0.3_amd64.deb
-dpkg -i sops_3.0.3_amd64.deb
+RUN curl -LO https://github.com/mozilla/sops/releases/download/3.0.3/sops_3.0.3_amd64.deb && \
+    dpkg -i sops_3.0.3_amd64.deb
 
 # install requirements
 COPY requirements.txt /tmp
