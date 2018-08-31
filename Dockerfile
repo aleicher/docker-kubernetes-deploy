@@ -1,12 +1,20 @@
 FROM google/cloud-sdk
 MAINTAINER Peter Wiggers <peter@bitlayer.nl>
 
+ENV SOPS_VERSION=3.0.5
+ENV KUBEVAL_VERSION=0.7.3
+
 # install pip
 RUN apt-get update && apt-get install -y python-pip git
 
 # install sops
-RUN curl -LO https://github.com/mozilla/sops/releases/download/3.0.3/sops_3.0.3_amd64.deb && \
-    dpkg -i sops_3.0.3_amd64.deb
+RUN curl -LO https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops_${SOPS_VERSION}_amd64.deb && \
+    dpkg -i sops_${SOPS_VERSION}_amd64.deb
+
+# install kubeval
+RUN curl -LO https://github.com/garethr/kubeval/releases/download/${KUBEVAL_VERSION}/kubeval-linux-amd64.tar.gz && \
+    tar -xzvf kubeval-linux-amd64.tar.gz && \
+    mv kubeval /usr/local/bin
 
 # install requirements
 COPY requirements.txt /tmp
