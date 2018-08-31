@@ -1,7 +1,7 @@
 FROM google/cloud-sdk
 MAINTAINER Peter Wiggers <peter@bitlayer.nl>
 
-ENV SOPS_VERSION=3.0.5
+ENV SOPS_VERSION=3.0.4
 ENV KUBEVAL_VERSION=0.7.3
 
 # install pip
