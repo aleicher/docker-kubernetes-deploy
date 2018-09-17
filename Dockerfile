@@ -7,6 +7,11 @@ ENV KUBEVAL_VERSION=0.7.3
 # install pip
 RUN apt-get update && apt-get install -y python-pip git
 
+# install nodejs and knexjs (SQL ORM)
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs build-essential
+RUN npm install -g knex
+
 # install sops
 RUN curl -LO https://github.com/mozilla/sops/releases/download/${SOPS_VERSION}/sops_${SOPS_VERSION}_amd64.deb && \
     dpkg -i sops_${SOPS_VERSION}_amd64.deb
